@@ -11,8 +11,8 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_BASE_URL),
   title: {
-    template: '%s | Next Starter',
-    default: 'Next Starter',
+    template: '%s | TypeCheckbox',
+    default: 'TypeCheckbox',
   },
   description: 'Next.js starter with shadcn/ui',
   openGraph: {

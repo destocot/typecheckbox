@@ -4,12 +4,17 @@ import Link from 'next/link'
 import { Container } from '@/components/container'
 import { Main } from '@/components/main'
 import { Button } from '@/components/ui/button'
+import { auth } from '@/lib/session'
+import { redirect } from 'next/navigation'
 
-export default function Page() {
+export default async function Page() {
+  const session = await auth()
+  if (!session) redirect('/login')
+
   return (
     <Main className='flex items-center justify-center'>
       <Container className='flex flex-col items-center gap-y-8 pb-8'>
-        <h1 className='text-3xl font-bold'>NextStarter</h1>
+        <h1 className='text-3xl font-bold'>TypeCheckbox</h1>
 
         <p className='max-w-prose text-center text-muted-foreground'>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae

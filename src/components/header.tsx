@@ -7,7 +7,7 @@ export const Header = () => {
     <header className='h-20 border-b'>
       <div className='container flex h-full items-center'>
         <Link href='/' className='text-3xl font-bold'>
-          NextStarter
+          TypeCheckbox
         </Link>
 
         <nav className='flex flex-1 justify-end'>

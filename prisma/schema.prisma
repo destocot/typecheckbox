@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+
+  username String @unique
+  password String
+
+  checklists Checklist[]
+
+  @@map("users")
+}
+
+model Checklist {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
+  items ChecklistItem[]
+
+  @@map("checklists")
+}
+
+model ChecklistItem {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+
+  checklistId String    @map("checklist_id")
+  checklist   Checklist @relation(fields: [checklistId], references: [id])
+
+  content String
+  isDone  Boolean @default(false) @map("is_done")
+  order   Int
+
+  @@map("checklist_items")
+}
